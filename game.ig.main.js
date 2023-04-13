@@ -920,7 +920,7 @@ ig.module("game.main").requires("impact.game", "plugins.splash-loader", "plugins
       }
   });
   device = getQueryVariable(s2BB.j6R);
-  console.log("--fx--device--getQueryVariable--");
+  console.log("--fx--device--getQueryVariable--", device);
   if (device) {
       switch (device) {
       case s2BB.y6R:

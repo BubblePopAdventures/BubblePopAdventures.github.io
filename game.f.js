@@ -4323,7 +4323,17 @@
   })
 }
 )(window);
-var portraitMode = !0, mobilePortraitWidth = 480, mobilePortraitHeight = 640, mobileLandscapeWidth = 640, mobileLandscapeHeight = 480, mobileWidth = portraitMode ? mobilePortraitWidth : mobileLandscapeWidth, mobileHeight = portraitMode ? mobilePortraitHeight : mobileLandscapeHeight, desktopWidth = 480, desktopHeight = 640, w, h, multiplier, destW, destH, dynamicClickableEntityDivs = {}, coreDivsToResize = ["game", "play", "orientate"], advancedDivsToResize = {
+console.log("--fx--!0--", !0);
+var portraitMode = !0,
+    mobilePortraitWidth = 480,
+    mobilePortraitHeight = 640,
+    mobileLandscapeWidth = 640,
+    mobileLandscapeHeight = 480,
+    mobileWidth = portraitMode ? mobilePortraitWidth : mobileLandscapeWidth,
+    mobileHeight = portraitMode ? mobilePortraitHeight : mobileLandscapeHeight,
+    desktopWidth = 480, desktopHeight = 640,
+    w, h, multiplier, destW, destH, dynamicClickableEntityDivs = {},
+    coreDivsToResize = ["game", "play", "orientate"], advancedDivsToResize = {
   MobileAdInGamePreroll: {
       "box-width": _SETTINGS.Ad.Mobile.Preroll.Width + 2,
       "box-height": _SETTINGS.Ad.Mobile.Preroll.Height + 20
@@ -4373,11 +4383,16 @@ function sizeHandler() {
   if ($("#game")) {
       w = window.innerWidth;
       h = window.innerHeight;
-      ig.ua.mobile ? (multiplier = Math.min(h / mobileHeight, w / mobileWidth),
-      destW = mobileWidth * multiplier,
-      destH = mobileHeight * multiplier) : (multiplier = Math.min(h / desktopHeight, w / desktopWidth),
-      destW = desktopWidth * multiplier,
-      destH = desktopHeight * multiplier);
+      console.log("--fx--ig.ua.mobile--", ig.ua.mobile);
+      if (ig.ua.mobile && 1==0) {
+        multiplier = Math.min(h / mobileHeight, w / mobileWidth),
+        destW = mobileWidth * multiplier,
+        destH = mobileHeight * multiplier
+      } else {
+        multiplier = Math.min(h / desktopHeight, w / desktopWidth),
+        destW = desktopWidth * multiplier,
+        destH = desktopHeight * multiplier
+      }
       widthRatio = window.innerWidth / mobileWidth;
       heightRatio = window.innerHeight / mobileHeight;
       adjustLayers();

@@ -262,7 +262,8 @@ b.ig = {
         ig.ua.winPhone = /Windows Phone/i.test(navigator.userAgent);
         ig.ua.Kindle = /Silk/i.test(navigator.userAgent);
         ig.ua.touchDevice = "ontouchstart"in b || b.navigator.msMaxTouchPoints;
-        ig.ua.mobile = ig.ua.iOS || ig.ua.android || ig.ua.iOS6 || ig.ua.winPhone || ig.ua.Kindle || /mobile/i.test(navigator.userAgent)
+        // ig.ua.mobile = ig.ua.iOS || ig.ua.android || ig.ua.iOS6 || ig.ua.winPhone || ig.ua.Kindle || /mobile/i.test(navigator.userAgent);
+        ig.ua.mobile= !1;
     },
     _initDOMReady: function() {
         ig.modules["dom.ready"] ? ig._execModules() : (ig._boot(),
