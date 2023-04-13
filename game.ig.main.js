@@ -1,3 +1,4 @@
+let musicPlayed= false;
 ig.baked = !0;
 ig.module("game.main").requires("impact.game", "plugins.splash-loader", "plugins.tween", "plugins.url-parameters", "plugins.jukebox", "plugins.director", "plugins.impact-storage", "plugins.gamedist", "plugins.branding.splash", "game.entities.branding-logo-placeholder", "game.entities.branding-logo", "game.entities.button-more-games", "game.entities.opening-shield", "game.entities.opening-kitty", "game.entities.pointer", "game.entities.pointer-selector", "game.entities.select", "game.levels.opening", "game.levels.game", "game.levels.home").defines(function() {
   var device, force_rotate;
@@ -431,6 +432,7 @@ ig.module("game.main").requires("impact.game", "plugins.splash-loader", "plugins
       },
       initSfx: function() {},
       finalize: function() {
+        console.log("--fx--finalize--");
           var g5R = s2BB;
           var d1 = "841187";
           var P1 = "498400";
@@ -493,6 +495,7 @@ ig.module("game.main").requires("impact.game", "plugins.splash-loader", "plugins
           }
       },
       removeLoadingWheel: function() {
+        console.log("--fx--removeLoadingWheel--");
           var N2R = 'none';
           var X2R = 'background';
           var C2R = '#ajaxbar';
@@ -573,9 +576,11 @@ ig.module("game.main").requires("impact.game", "plugins.splash-loader", "plugins
               }
               s6R.F7(s6R.Y7);
               this.spawnEntity(EntityPointerSelector, +z2R, s6R.n7(D2R, s6R.Q7));
-              ig.soundHandler.playBackgroundMusic();
-              this.getSound();
-              this.getMusic();
+              // H2Fixed
+            //   console.log("--fx--playBackgroundMusic--");
+            //   ig.soundHandler.playBackgroundMusic();
+            //   this.getSound();
+            //   this.getMusic();
           } else {
               this.resetPlayerStats();
               if (ig.ua.mobile) {
@@ -596,9 +601,11 @@ ig.module("game.main").requires("impact.game", "plugins.splash-loader", "plugins
               }
               s6R.F7(s6R.Y7);
               this.spawnEntity(EntityPointerSelector, s6R.b7(s6R.q2R, s6R.Q7), s6R.b7(s6R.E7, s6R.q2R, s6R.c7(s6R.Q7)));
-              ig.soundHandler.playBackgroundMusic();
-              this.getSound();
-              this.getMusic();
+            //   H2Fixed
+            //   console.log("--fx--playBackgroundMusic2--");
+            //   ig.soundHandler.playBackgroundMusic();
+            //   this.getSound();
+            //   this.getMusic();
           }
       },
       fpsCount: function() {
@@ -620,6 +627,7 @@ ig.module("game.main").requires("impact.game", "plugins.splash-loader", "plugins
           }
       },
       endGame: function() {
+        console.log("--fx--endGame--");
           var Q6R = s2BB;
           var Z2R = 'End';
           var i2R = 'End game';
@@ -658,6 +666,7 @@ ig.module("game.main").requires("impact.game", "plugins.splash-loader", "plugins
           }
       },
       resetPlayerStats: function() {
+        console.log("--fx--resetPlayerStats--");
           var l2R = 'resetting player stats ...';
           ig.log(l2R);
           this.playerStats = {
@@ -665,6 +674,7 @@ ig.module("game.main").requires("impact.game", "plugins.splash-loader", "plugins
           };
       },
       setupControls: function() {
+        console.log("--fx--setupControls--");
           var c6R = s2BB;
           var c2R = 'toggle';
           var b2R = "881533";
@@ -696,6 +706,8 @@ ig.module("game.main").requires("impact.game", "plugins.splash-loader", "plugins
           }
       },
       setupURLParameters: function() {
+        console.log("--fx--setupURLParameters--");
+
           this.setupURLParameters = new ig.UrlParameters();
       },
       pressPlay: function() {
@@ -745,11 +757,13 @@ ig.module("game.main").requires("impact.game", "plugins.splash-loader", "plugins
           }
       },
       pauseGame: function() {
+        console.log("--fx--pauseGame--");
           var B6R = 'Game Paused';
           ig.system.stopRunLoop.call(ig.system);
           console.log(B6R);
       },
       resumeGame: function() {
+        console.log("--fx--resumeGame--");
           var n6R = s2BB;
           var x6R = 'Game Resumed';
           var w6R = "869932";
@@ -774,6 +788,8 @@ ig.module("game.main").requires("impact.game", "plugins.splash-loader", "plugins
           }
       },
       showOverlay: function(v) {
+        console.log("--fx--showOverlay--");
+        // ig.soundHandler.playBackgroundMusic();
           var J6R = s2BB;
           for (i = +J6R.j4; i < v.length; i++) {
               if ($(J6R.M8 + v[i])) {
@@ -785,6 +801,16 @@ ig.module("game.main").requires("impact.game", "plugins.splash-loader", "plugins
           }
       },
       hideOverlay: function(C) {
+        console.log("--fx--hideOverlay--");
+        // H2Fixed
+        if (!musicPlayed) {
+            musicPlayed= true;
+            console.log("--fx--playBackgroundMusic2--");
+            ig.soundHandler.playBackgroundMusic();
+            this.getSound();
+            this.getMusic();
+        }
+
           var d6R = s2BB;
           for (i = d6R.j4 - d6R.E7; i < C.length; i++) {
               if ($(d6R.M8 + C[i])) {
@@ -796,6 +822,7 @@ ig.module("game.main").requires("impact.game", "plugins.splash-loader", "plugins
           }
       },
       update: function() {
+        // console.log("--fx--update--");
           if (this.paused) {
               for (var r = +s2BB.j4; r < this.entities.length; r++) {
                   if (this.entities[r].ignorePause) {
@@ -810,6 +837,7 @@ ig.module("game.main").requires("impact.game", "plugins.splash-loader", "plugins
           }
       },
       draw: function() {
+        // console.log("--fx--");
           var O6R = s2BB;
           this.stage = ig.game.getEntitiesByType(EntityPlainStage)[O6R.b7(O6R.E7, O6R.j4, O6R.c7(O6R.E7))];
           if (this.stage) {
@@ -825,6 +853,7 @@ ig.module("game.main").requires("impact.game", "plugins.splash-loader", "plugins
           }
       },
       drawDebug: function() {
+        console.log("--fx--drawDebug--");
           var R6R = s2BB;
           var e6R = "10";
           var k6R = ": ";
@@ -891,6 +920,7 @@ ig.module("game.main").requires("impact.game", "plugins.splash-loader", "plugins
       }
   });
   device = getQueryVariable(s2BB.j6R);
+  console.log("--fx--device--getQueryVariable--");
   if (device) {
       switch (device) {
       case s2BB.y6R:

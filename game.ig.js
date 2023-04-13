@@ -280,13 +280,15 @@ ig.module("impact.sound").defines(function() {
           this.currentTrack.currentTime = 0)
       },
       play: function(b) {
+        console.log("--fx--play--");
           if (b && this.namedTracks[b])
               b = this.namedTracks[b],
               b != this.currentTrack && (this.stop(),
               this.currentTrack = b);
           else if (!this.currentTrack)
               return;
-          this.currentTrack.play()
+
+        this.currentTrack.play();
       },
       getLooping: function() {
           return this._loop
